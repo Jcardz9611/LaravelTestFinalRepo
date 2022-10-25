@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/authorization', [App\Http\Controllers\UsersController::class, 'authUsers']);
+
+Route::get('/authForm/{id}', [App\Http\Controllers\UsersController::class, 'authForm'])->name('users.authForm');
+
+Route::put('/saveAuth/{id}', [App\Http\Controllers\UsersController::class, 'saveAuth'])->name('users.saveAuth');
