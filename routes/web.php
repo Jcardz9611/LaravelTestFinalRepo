@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UploadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +15,7 @@ use App\Http\Controllers\UsersController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('masonry');
 });
 
 Auth::routes();
@@ -26,3 +27,7 @@ Route::get('/authorization', [App\Http\Controllers\UsersController::class, 'auth
 Route::get('/authForm/{id}', [App\Http\Controllers\UsersController::class, 'authForm'])->name('users.authForm');
 
 Route::put('/saveAuth/{id}', [App\Http\Controllers\UsersController::class, 'saveAuth'])->name('users.saveAuth');
+
+Route::view('/upload','upload');
+
+Route::post('upload', [UploadController::class, 'handle']);
