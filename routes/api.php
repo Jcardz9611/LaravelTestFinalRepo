@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('imagenes', [ImagenController::class, 'index']);
 
+Route::get('allowImages', [ImagenController::class, 'allowImages']);
+

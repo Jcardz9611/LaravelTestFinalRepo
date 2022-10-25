@@ -10,20 +10,19 @@
 </head>
 <body>
 @if(Auth::check() && Auth::user()->role==1)
-<div id="top-nav-bar" catalog="1" login="1" role="1">
+<div id="top-nav-bar" catalog="3" login="1" role="1">
     <top-nav-bar></top-nav-bar>
 </div>
 @elseif (Auth::check() && Auth::user()->role==2)
-<div id="top-nav-bar" catalog="1" login="1" role="2">
+<div id="top-nav-bar" catalog="3" login="1" role="2">
     <top-nav-bar></top-nav-bar>
 </div>
 @else
-<div id="top-nav-bar" catalog="1" login="0">
+<div id="top-nav-bar" catalog="3" login="0">
     <top-nav-bar></top-nav-bar>
 </div>
 @endif
-
-<div id="app" catalog="1">
+<div id="app" catalog="3">
     <front-page></front-page>
 </div>
 

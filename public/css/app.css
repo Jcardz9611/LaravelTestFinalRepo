@@ -142,3 +142,15 @@ header>h1{
     width: 80px;
     height: 30px;
 }
+
+.load-more{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.load-more button{
+    background-color: darkred;
+    width: 100px;
+    height: 30px;
+    border-radius: 10%;
+}

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\ImagenesController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +33,17 @@ Route::put('/saveAuth/{id}', [App\Http\Controllers\UsersController::class, 'save
 Route::view('/upload','upload');
 
 Route::post('upload', [UploadController::class, 'handle']);
+
+//Route::view('/moderator', '/moderator');
+
+Route::get('moderator', [ImagenesController::class, 'moderator']);
+
+/*Route::get('/moderator' , function () {
+    if(Auth::user()->role==1){
+        return view('moderator');
+    }else{
+        return view('/');
+    }
+})->name('moderator');*/
+
+Route::post('allowResponse', [ImagenesController::class, 'allowResponse']);

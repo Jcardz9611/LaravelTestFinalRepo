@@ -5,9 +5,12 @@
                 <img :src="imagen.ruta"  @click="showModal(imagen.ruta)">  
                 <h3>{{imagen.nombre}}</h3>
                 <p>{{imagen.descripcion}}</p> 
+                <div v-show="allowButton" class="load-more">
+                    <button type="button" v-on:click="allowResponse(imagen.id_imagen)" class="btn btn-primary btn-sm">Allow</button> 
+                </div>
         </div>  
     </div>
-    <div v-show="moreExists">
+    <div v-show="moreExists" class="load-more">
         <button type="button" v-on:click="loadMore()" class="btn btn-primary btn-sm">Load more</button> 
     </div>
     <div v-if="modalShow" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -26,7 +29,7 @@
     </body>
 </template>
 <script>
- 
+    let catalog = document.getElementById('top-nav-bar').getAttribute('catalog')
     export default {
         data: function () {
             return {
@@ -34,7 +37,9 @@
                 loading: true,
                 modalShow: false,
                 moreExists: false,
-                nextPage : 0
+                nextPage : 0,
+                catalog : catalog,
+                allowButton : false,
             }
         },
         mounted() {
@@ -42,20 +47,31 @@
         },
         methods: {
             loadImagenes: function () {
-                axios.get('/api/imagenes')
-                    .then((response) => {
-                        this.imagenes = response.data.data;
-                        if(response.data.meta.current_page < response.data.meta.last_page){
-                            this.moreExists = true;
-                            this.nextPage = response.data.meta.current_page + 1
-                            console.log(this.nextPage)
-                        }else{
-                            this.moreExists = false;
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                if(this.catalog==1){
+                    axios.get('/api/imagenes')
+                        .then((response) => {
+                            this.imagenes = response.data.data;
+                            if(response.data.meta.current_page < response.data.meta.last_page){
+                                this.moreExists = true;
+                                this.nextPage = response.data.meta.current_page + 1
+                                console.log(this.nextPage)
+                            }else{
+                                this.moreExists = false;
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }else if(this.catalog==3){
+                    axios.get('/api/allowImages')
+                        .then((response) => {
+                            this.imagenes = response.data.data
+                            this.allowButton = true
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
             },
             showModal(ruta) {
                 this.modalShow = true;
@@ -84,6 +100,20 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+            },
+            allowResponse: function(id){
+                console.log(id);
+                const formData = new FormData
+                formData.set('id', id)
+                axios.post('/allowResponse', formData)
+                .then((response) => {
+                        console.log(`La imagen con id ${id} fue actualizada`)
+                        location.href = '/moderator'
+                    })
+                    .catch(function (error) {
+                        console.log(error.response.data);
+                    });
+                
             }
         }
     }
