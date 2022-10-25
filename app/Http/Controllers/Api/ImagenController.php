@@ -11,6 +11,6 @@ class ImagenController extends Controller
 {
     public function index()
     {
-        return ImagenResource::collection(Imagen::all());
+        return ImagenResource::collection(Imagen::paginate(5));
     }
 }

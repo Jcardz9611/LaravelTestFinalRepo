@@ -5,16 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Jinter App</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-<div id="top-nav-bar" catalog="1">
-    <top-nav-bar></top-nav-bar>
+<div id="top-nav-bar" catalog="2">
+    <top-nav-bar ></top-nav-bar>
 </div>
-<div id="app">
-    <front-page></front-page>
+<div id="upload">
+    <upload></upload>
 </div>
+
 
 <footer class="footer py-5 bg-dark">
     <div class="container">

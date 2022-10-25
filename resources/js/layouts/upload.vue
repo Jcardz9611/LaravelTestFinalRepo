@@ -1,9 +1,18 @@
 <template>
     <form @submit.prevent="upload">
-        <input @change="handleOnChange" type="file">
-         <input @change="handleName" id="nombre" name="nombre" type="text">
-        <input @change="handleDescription" id="descripcion" name="descripcion" type="text">
-        <button>Upload</button>
+        <h1 class="upload-title">Upload your image</h1>
+        <div class="image-upload">
+            <input  @change="handleOnChange" type="file"><br>
+        </div>   
+        <div class="nombre-input">
+             <input @change="handleName" id="nombre" name="nombre" type="text">
+        </div>  
+        <div class="descripcion-input">
+            <input @change="handleDescription" id="descripcion" name="descripcion" type="text">
+        </div>  
+        <div class="boton-upload">
+          <button>Upload</button>
+        </div>
     </form>
 </template>
 
