@@ -94,4 +94,17 @@ class ImagenesController extends Controller
         $userSave->save();
         //return $userFav; 
     }
+
+    public function favorites()
+    {
+        $imgArray = Auth::user()->imagenes_fav;
+        $imgArray = explode(',', $imgArray);
+        $imagenes = Imagen::whereIn('id_imagen',$imgArray)->get();
+        return $imagenes;
+    }
+
+    public function favCatalog()
+    {
+        return view('favorites');
+    }
 }

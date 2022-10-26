@@ -42,6 +42,10 @@ Route::get('imagenes', [ImagenesController::class, 'index']);
 
 Route::get('allowImages', [ImagenesController::class, 'allowImages']);
 
+Route::get('favCatalog', [ImagenesController::class, 'favCatalog']);
+
+Route::get('favorites', [ImagenesController::class, 'favorites']);
+
 Route::get('favSearch/{id_imagen}', [ImagenesController::class, 'favSearch']);
 
 Route::post('dislikeHandler/{id_imagen}', [ImagenesController::class, 'dislikeHandler']);

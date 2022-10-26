@@ -6,7 +6,7 @@
                 <h3>{{imagen.nombre}}</h3>
                 <p>{{imagen.descripcion}}</p> 
 
-                <p v-if="catalog == '1'" class="no-fav-p"><a class="no-fav imagen" :id="imagen.id_imagen" @click="favHandler" href="#">&#10084;  {{imagen.contador_fav}}</a></p>
+                <p v-if="catalog == '1' || catalog == '4'" class="no-fav-p"><a class="no-fav imagen" :id="imagen.id_imagen" @click="favHandler" href="#">&#10084;  {{imagen.contador_fav}}</a></p>
                
                 <div v-show="allowButton" class="load-more">
                     <button type="button" v-on:click="allowResponse(imagen.id_imagen)" class="btn btn-primary btn-sm">Allow</button> 
@@ -78,6 +78,14 @@
                         .catch(function (error) {
                             console.log(error);
                         });
+                }else if(this.catalog==4){
+                    axios.get('/favorites')
+                        .then((response) => {
+                            this.imagenes = response.data
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
                 }
             },
             showModal(ruta) {
@@ -141,6 +149,9 @@
                             .then((response) => {
                                     console.log(`Dislike enviado`)
                                     console.log(response.data)
+                                    if(catalog==4){
+                                        this.reloadPage();
+                                    }
                                 })
                             .catch(function (error) {
                                 console.log(error.response.data);
@@ -162,6 +173,9 @@
                         }
                     }
                 },
+            reloadPage(){
+                location.href = '/favCatalog'
+            },
             likeProp(){
                 let count = document.getElementsByClassName("imagen").length
                 let targetElement = 0
