@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ImagenResource extends JsonResource
@@ -18,7 +18,8 @@ class ImagenResource extends JsonResource
             'id_imagen' => $this->id_imagen,
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion,
-            'ruta' => $this->ruta
+            'ruta' => $this->ruta,
+            'contador_fav' => $this->contador_fav
         ];
        
     }

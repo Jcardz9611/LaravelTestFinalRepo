@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Route::middleware('auth:api')->get('/imagenes','ImagenController@index');
+
 Route::get('imagenes', [ImagenController::class, 'index']);
 
 Route::get('allowImages', [ImagenController::class, 'allowImages']);

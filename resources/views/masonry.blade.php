@@ -23,10 +23,15 @@
 </div>
 @endif
 
-<div id="app" catalog="1">
+@if(Auth::check() )
+<div id="app" catalog="1" login="1">
     <front-page></front-page>
 </div>
-
+@else
+<div id="app" catalog="1" login="0">
+    <front-page></front-page>
+</div>
+@endif
 <footer class="footer py-5 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; JinterApp {{ date('Y') }}</p>

@@ -5,6 +5,9 @@
                 <img :src="imagen.ruta"  @click="showModal(imagen.ruta)">  
                 <h3>{{imagen.nombre}}</h3>
                 <p>{{imagen.descripcion}}</p> 
+
+                <p v-if="catalog == '1'" class="no-fav-p"><a class="no-fav imagen" :id="imagen.id_imagen" @click="favHandler" href="#">&#10084;  {{imagen.contador_fav}}</a></p>
+               
                 <div v-show="allowButton" class="load-more">
                     <button type="button" v-on:click="allowResponse(imagen.id_imagen)" class="btn btn-primary btn-sm">Allow</button> 
                 </div>
@@ -30,6 +33,7 @@
 </template>
 <script>
     let catalog = document.getElementById('top-nav-bar').getAttribute('catalog')
+    let login = document.getElementById('top-nav-bar').getAttribute('login')
     export default {
         data: function () {
             return {
@@ -39,16 +43,19 @@
                 moreExists: false,
                 nextPage : 0,
                 catalog : catalog,
+                login : login,
                 allowButton : false,
+                count : 0
             }
         },
         mounted() {
             this.loadImagenes();
+            this.onUpdated();
         },
         methods: {
             loadImagenes: function () {
                 if(this.catalog==1){
-                    axios.get('/api/imagenes')
+                    axios.get('/imagenes')
                         .then((response) => {
                             this.imagenes = response.data.data;
                             if(response.data.meta.current_page < response.data.meta.last_page){
@@ -63,7 +70,7 @@
                             console.log(error);
                         });
                 }else if(this.catalog==3){
-                    axios.get('/api/allowImages')
+                    axios.get('/allowImages')
                         .then((response) => {
                             this.imagenes = response.data.data
                             this.allowButton = true
@@ -84,7 +91,7 @@
                 this.modalShow = false; 
             },
             loadMore: function () {
-                axios.get(`/api/imagenes?page=${this.nextPage}`)
+                axios.get(`/imagenes?page=${this.nextPage}`)
                     .then((response) => {
                        
                         if(response.data.meta.current_page < response.data.meta.last_page){
@@ -113,6 +120,70 @@
                     .catch(function (error) {
                         console.log(error.response.data);
                     });
+                
+            },
+            onUpdated(){
+            setTimeout(() =>
+            this.likeProp()
+            ,200)
+            },
+            favHandler(event){
+                if(login==1){
+                        let id = event.target.id
+                        let likesNumber = parseInt(event.target.innerHTML.match(/\d+/)[0])
+                        if(event.target.classList.contains("like")){
+                            likesNumber -=1;
+                            likesNumber.toString()
+                            event.target.innerHTML = `&#10084;  ${likesNumber}`
+                            event.target.classList.add("unlike")
+                            event.target.classList.remove("like");
+                            axios.post(`/dislikeHandler/${id}`,)
+                            .then((response) => {
+                                    console.log(`Dislike enviado`)
+                                    console.log(response.data)
+                                })
+                            .catch(function (error) {
+                                console.log(error.response.data);
+                            });
+                        }else if(event.target.classList.contains("unlike")){
+                            likesNumber +=1;
+                            likesNumber.toString()
+                            event.target.innerHTML = `&#10084;  ${likesNumber}`
+                            event.target.classList.add("like")
+                            event.target.classList.remove("unlike");
+                            axios.post(`/likeHandler/${id}`,)
+                            .then((response) => {
+                                    console.log(`Like enviado`)
+                                    console.log(response.data)
+                                })
+                            .catch(function (error) {
+                                console.log(error.response.data);
+                            });
+                        }
+                    }
+                },
+            likeProp(){
+                let count = document.getElementsByClassName("imagen").length
+                let targetElement = 0
+                let element = 0
+                for(let i=0;i<count;i++){
+                    targetElement = document.getElementsByClassName("imagen")[i].__vnode.props.id
+                    console.log(targetElement)
+                    axios.get(`/favSearch/${targetElement}`)
+                        .then((response) => {
+                            console.log(response.data)
+                            if(response.data != 0){
+                                element = document.getElementsByClassName("imagen")[i];
+                                element.classList.add("like");
+                            }else{
+                                element = document.getElementsByClassName("imagen")[i];
+                                element.classList.add("unlike");
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
                 
             }
         }

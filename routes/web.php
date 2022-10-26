@@ -34,16 +34,16 @@ Route::view('/upload','upload');
 
 Route::post('upload', [UploadController::class, 'handle']);
 
-//Route::view('/moderator', '/moderator');
-
 Route::get('moderator', [ImagenesController::class, 'moderator']);
 
-/*Route::get('/moderator' , function () {
-    if(Auth::user()->role==1){
-        return view('moderator');
-    }else{
-        return view('/');
-    }
-})->name('moderator');*/
-
 Route::post('allowResponse', [ImagenesController::class, 'allowResponse']);
+
+Route::get('imagenes', [ImagenesController::class, 'index']);
+
+Route::get('allowImages', [ImagenesController::class, 'allowImages']);
+
+Route::get('favSearch/{id_imagen}', [ImagenesController::class, 'favSearch']);
+
+Route::post('dislikeHandler/{id_imagen}', [ImagenesController::class, 'dislikeHandler']);
+
+Route::post('likeHandler/{id_imagen}', [ImagenesController::class, 'likeHandler']);

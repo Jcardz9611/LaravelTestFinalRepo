@@ -154,3 +154,22 @@ header>h1{
     height: 30px;
     border-radius: 10%;
 }
+
+.no-fav{
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+    
+}
+
+.no-fav-p{
+    text-align: left;
+}
+
+.like{
+    color:red;
+}
+
+.unlike{
+    color:gray;
+}
