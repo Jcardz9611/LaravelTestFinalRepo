@@ -109,6 +109,10 @@ class ImagenesController extends Controller
 
     public function favCatalog()
     {
-        return view('favorites');
+        if(Auth::user()->role==1){
+            return view('favorites');
+        }else{
+            return redirect('/');  
+        }
     }
 }

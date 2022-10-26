@@ -59,6 +59,7 @@
                     axios.get('/imagenes')
                         .then((response) => {
                             this.imagenes = response.data.data;
+                            console.log(response.data.data)
                             if(response.data.meta.current_page < response.data.meta.last_page){
                                 this.moreExists = true;
                                 this.nextPage = response.data.meta.current_page + 1
@@ -134,7 +135,7 @@
             onUpdated(){
             setTimeout(() =>
             this.likeProp()
-            ,200)
+            ,500)
             },
             favHandler(event){
                 if(login==1){
@@ -178,6 +179,7 @@
                 location.href = '/favCatalog'
             },
             likeProp(){
+                console.log("se ejecuta likeprop")
                 let count = document.getElementsByClassName("imagen").length
                 let targetElement = 0
                 let element = 0

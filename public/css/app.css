@@ -116,10 +116,35 @@ header>h1{
 }
 
 .image-upload{
-    text-align: center;
-    margin-top: 10px;
+    width:800px; 
+    margin:auto auto;
+    margin-left: 39%;
 }
 
+.img-preview{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+.image-upload::before{
+    background-color: #5678EF;
+    color: white;
+    display: flex;
+    margin-left: 120px;
+    align-items: center;
+    text-align: center;
+    border-radius: 3px;
+    content: 'Upload Image'; 
+    position: absolute;
+}
+
+.image-upload input{
+    opacity: 0;
+  width: 200px;
+  height: 32px;
+  display: inline-block;
+}
 .nombre-input{
     text-align: center;
     margin-top: 10px;
@@ -161,6 +186,17 @@ header>h1{
     font-size: 30px;
     
 }
+
+#preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #preview img {
+    max-width: 100%;
+    max-height: 500px;
+  }
 
 .no-fav-p{
     text-align: left;

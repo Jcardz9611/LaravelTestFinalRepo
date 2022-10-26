@@ -6,7 +6,7 @@
                 <li v-if="catalog !== '1'"><a href="/">Home</a></li>
                 <li v-if="catalog !== '2'"><a href="/upload">Upload</a></li>
                 <li v-if="catalog !== '4'" ><a href="/favCatalog">Favorites</a></li>
-                <li v-if="role === '1' && catalog !=='3'"><a href="/moderator">Moderator</a></li>
+                <li v-if="role === '1' && catalog !='3'"><a href="/moderator">Moderator</a></li>
                 <li v-if="login === '0'"><a href="/login">Login</a></li>
                 <li v-if="login === '0'"><a href="/register">Register</a></li>
                 <li v-if="login === '1'"><a @click="logout">Logout</a></li>

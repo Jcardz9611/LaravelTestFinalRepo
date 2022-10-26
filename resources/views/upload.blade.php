@@ -9,9 +9,15 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-<div id="top-nav-bar" catalog="2">
+@if(Auth::check() && Auth::user()->role==1)
+<div id="top-nav-bar" catalog="2" role="1">
     <top-nav-bar ></top-nav-bar>
 </div>
+@else (Auth::check() && Auth::user()->role==2)
+<div id="top-nav-bar" catalog="2" role="2">
+    <top-nav-bar ></top-nav-bar>
+</div>
+@endif
 <div id="upload">
     <upload></upload>
 </div>
