@@ -33,7 +33,9 @@ class ImagenesController extends Controller
 
     public function index()
     {        
-            return ImagenResource::collection(Imagen::where('estatus',1)->paginate(5));
+            return Imagen::select('imagenes.id_imagen as id_imagen','imagenes.nombre as nombre','imagenes.descripcion as descripcion','imagenes.ruta as ruta','imagenes.contador_fav as contador_fav','users.name as autor')
+            ->leftjoin('users','users.id','imagenes.autor')
+            ->where('imagenes.estatus',1)->paginate(5);
     }
 
     public function allowImages()
@@ -99,7 +101,9 @@ class ImagenesController extends Controller
     {
         $imgArray = Auth::user()->imagenes_fav;
         $imgArray = explode(',', $imgArray);
-        $imagenes = Imagen::whereIn('id_imagen',$imgArray)->get();
+        $imagenes = Imagen::select('imagenes.id_imagen as id_imagen','imagenes.nombre as nombre','imagenes.descripcion as descripcion','imagenes.ruta as ruta','imagenes.contador_fav as contador_fav','users.name as autor')
+        ->leftjoin('users','users.id','imagenes.autor')
+        ->whereIn('id_imagen',$imgArray)->get();
         return $imagenes;
     }
 

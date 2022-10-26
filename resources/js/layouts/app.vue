@@ -5,6 +5,7 @@
                 <img :src="imagen.ruta"  @click="showModal(imagen.ruta)">  
                 <h3>{{imagen.nombre}}</h3>
                 <p>{{imagen.descripcion}}</p> 
+                <p v-if="imagen.autor !== null">Author: {{imagen.autor}}</p>
 
                 <p v-if="catalog == '1' || catalog == '4'" class="no-fav-p"><a class="no-fav imagen" :id="imagen.id_imagen" @click="favHandler" href="#">&#10084;  {{imagen.contador_fav}}</a></p>
                
