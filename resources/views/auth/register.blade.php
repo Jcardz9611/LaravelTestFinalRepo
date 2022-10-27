@@ -60,7 +60,17 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-4">
+                            <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="admin" id="admin">
 
+                                    <label class="form-check-label" for="admin">
+                                        {{ __('Is Admin?') }}
+                                    </label>
+                                </div>
+                            </div>
+                            </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

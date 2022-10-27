@@ -59,10 +59,11 @@
                     axios.get('/imagenes')
                         .then((response) => {
                             this.imagenes = response.data.data;
-                            console.log(response.data.data)
-                            if(response.data.meta.current_page < response.data.meta.last_page){
+                            console.log(response.data)
+                            if(response.data.current_page < response.data.last_page){
                                 this.moreExists = true;
-                                this.nextPage = response.data.meta.current_page + 1
+                                console.log("More exists true")
+                                this.nextPage = response.data.current_page + 1
                                 console.log(this.nextPage)
                             }else{
                                 this.moreExists = false;
@@ -104,9 +105,9 @@
                 axios.get(`/imagenes?page=${this.nextPage}`)
                     .then((response) => {
                        
-                        if(response.data.meta.current_page < response.data.meta.last_page){
+                        if(response.data.current_page < response.data.last_page){
                             this.moreExists = true;
-                            this.nextPage = response.data.meta.current_page + 1
+                            this.nextPage = response.data.current_page + 1
                         }else{
                             this.moreExists = false;
                         }

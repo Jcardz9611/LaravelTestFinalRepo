@@ -29,7 +29,6 @@ class UsersController extends Controller
     public function saveAuth(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->role = $request->role;
         $user->authorized = $request->authorized;
         $user->save();
         return redirect('/');

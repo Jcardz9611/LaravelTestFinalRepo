@@ -35,7 +35,7 @@ class ImagenesController extends Controller
     {        
             return Imagen::select('imagenes.id_imagen as id_imagen','imagenes.nombre as nombre','imagenes.descripcion as descripcion','imagenes.ruta as ruta','imagenes.contador_fav as contador_fav','users.name as autor')
             ->leftjoin('users','users.id','imagenes.autor')
-            ->where('imagenes.estatus',1)->paginate(5);
+            ->where('imagenes.estatus',1)->paginate(20);
     }
 
     public function allowImages()
@@ -64,12 +64,10 @@ class ImagenesController extends Controller
         $userFav = explode(',', $userFav->imagenes_fav);
         $key = array_search($id, $userFav);
         unset($userFav[$key]);
-        //array_push($userFav,$id);
         $userFav = implode (",", $userFav);
         $userSave =User::where('id',$user)->get()[0];
         $userSave->imagenes_fav = $userFav;
         $userSave->save();
-        //return $userSave;
 
 
     }
@@ -94,7 +92,6 @@ class ImagenesController extends Controller
         $userSave =User::where('id',$user)->get()[0];
         $userSave->imagenes_fav = $userFav;
         $userSave->save();
-        //return $userFav; 
     }
 
     public function favorites()
@@ -109,7 +106,7 @@ class ImagenesController extends Controller
 
     public function favCatalog()
     {
-        if(Auth::user()->role==1){
+        if(Auth::user()->authorized==1){
             return view('favorites');
         }else{
             return redirect('/');  

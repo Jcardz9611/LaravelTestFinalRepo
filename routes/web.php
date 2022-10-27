@@ -32,7 +32,7 @@ Route::put('/saveAuth/{id}', [App\Http\Controllers\UsersController::class, 'save
 
 Route::view('/upload','upload');
 
-Route::post('upload', [UploadController::class, 'handle']);
+Route::post('handle', [UploadController::class, 'handle']);
 
 Route::get('moderator', [ImagenesController::class, 'moderator']);
 

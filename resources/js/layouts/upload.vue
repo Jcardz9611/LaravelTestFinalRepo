@@ -7,11 +7,13 @@
          <div id="preview">
             <img v-if="url" :src="url" @click="showModal()" class="img-preview" />
         </div> 
+        <label class="name-label">Name</label>
         <div class="nombre-input">
              <input @change="handleName" id="nombre" name="nombre" type="text">
-        </div>  
+        </div> 
+          <label class="description-label">Description</label> 
         <div class="descripcion-input">
-            <input @change="handleDescription" id="descripcion" name="descripcion" type="text">
+            <textarea @change="handleDescription" id="descripcion" name="descripcion"></textarea>
         </div>  
         <div class="boton-upload">
           <button>Upload</button>
@@ -68,9 +70,11 @@
                 formData.set('image', this.image)
                 formData.set('nombre',this.nombre)
                 formData.set('descripcion',this.descripcion)
-                axios.post('/upload', formData)
+                console.log(this.descripcion)
+                axios.post('/handle', formData)
                 .then((response) => {
-                        
+                        console.log(response)
+                        console.log("llegan los datos")
                     })
                     .catch(function (error) {
                         console.log(error.response.data);

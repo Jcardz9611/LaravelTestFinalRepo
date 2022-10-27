@@ -19,15 +19,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
-
-                            <div class="col-md-6">
-                                <select class="form-control" name="role">
-                                    <option value="1"{{ $user->role == 1 ? 'selected' : ''}}>Admin</option>
-                                    <option value="2"{{ $user->role == 2 ? 'selected' : '' }}>Regular user</option>
-                                </select>
-                            </div>
                         </div>
                 
 

@@ -9,6 +9,7 @@
                 <li v-if="role === '1' && catalog !='3'"><a href="/moderator">Moderator</a></li>
                 <li v-if="login === '0'"><a href="/login">Login</a></li>
                 <li v-if="login === '0'"><a href="/register">Register</a></li>
+                <li v-if="login === '1' && role === '1'"><a href="/authorization">Authorize users</a></li>
                 <li v-if="login === '1'"><a @click="logout">Logout</a></li>
                 
             </ul>

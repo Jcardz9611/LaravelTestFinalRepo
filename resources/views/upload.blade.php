@@ -10,7 +10,7 @@
 </head>
 <body>
 @if(Auth::check() && Auth::user()->role==1)
-<div id="top-nav-bar" catalog="2" role="1">
+<div id="top-nav-bar" catalog="2" role="1" login="1">
     <top-nav-bar ></top-nav-bar>
 </div>
 @else (Auth::check() && Auth::user()->role==2)
@@ -21,13 +21,6 @@
 <div id="upload">
     <upload></upload>
 </div>
-
-
-<footer class="footer py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; JinterApp {{ date('Y') }}</p>
-    </div>
-</footer>
 
 @vite('resources/js/app.js')
 </body>

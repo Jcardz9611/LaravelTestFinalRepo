@@ -4,6 +4,7 @@
     box-sizing: border-box;
     margin:0;
     padding: 0;
+    font-family: sans-serif;
     
 }
 
@@ -24,7 +25,8 @@ header{
 }
 
 header>h1{
-    color: antiquewhite;
+    color:white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .nav__links{
@@ -32,6 +34,7 @@ header>h1{
 }
 
 .nav__links li{
+    list-style: none;
     display: inline-block;
     padding: 0px 20px;
 }
@@ -144,16 +147,35 @@ header>h1{
   width: 200px;
   height: 32px;
   display: inline-block;
+  margin-bottom: 20px;
 }
 .nombre-input{
     text-align: center;
     margin-top: 10px;
-    font-size: large;
+}
+
+.nombre-input input{
+    font-size: 30px;
+    margin-bottom: 20px;
 }
 
 .descripcion-input{
     text-align: center;
     margin-top: 10px;
+}
+
+.name-label{
+   margin-left: 580px;
+}
+
+.description-label{
+    margin-left: 580px;
+}
+
+.descripcion-input textarea{
+    width: 380px;
+    height:50px;
+    margin-bottom: 50px;
 }
 
 .boton-upload{
