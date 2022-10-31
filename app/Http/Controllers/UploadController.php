@@ -11,12 +11,16 @@ class UploadController extends Controller
 {
     public function handle(Request $request)
     {
-        $user = Auth::user()->id;
-        $estatus = null;
-        if(Auth::user()->authorized==1){
-            $estatus = 1;
-        }else{
-            $estatus = 0;
+        $user = 0;
+        $estatus = 0;
+        if(Auth::check()){
+            $user = Auth::user()->id;
+            $estatus = null;
+            if(Auth::user()->authorized==1){
+                $estatus = 1;
+            }else{
+                $estatus = 0;
+            }
         }
             $pathToFile = $request->file('image')->storeAs('/img', $request->nombre.'.jpg');
             $imagen = new Imagen();

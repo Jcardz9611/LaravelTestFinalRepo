@@ -75,6 +75,7 @@
                 .then((response) => {
                         console.log(response)
                         console.log("llegan los datos")
+                         location.href = '/'
                     })
                     .catch(function (error) {
                         console.log(error.response.data);
